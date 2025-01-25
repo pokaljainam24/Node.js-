@@ -3,16 +3,22 @@ const fs = require('fs');
 const handleRequest = (req, res) => {
     let filename = '';
 
-    if (req.url === '/') {
-        filename = './index.html';
-    } else if (req.url === '/about') {
-        filename = './about.html';
-    } else if (req.url === '/contact') {
-        filename = './contact.html';
-    } else if (req.url === '/blog') {
-        filename = './blog.html';
-    } else {
-        filename = './error.html';
+    switch (req.url) {
+        case '/':
+            filename = './index.html'
+            break;
+        case '/about':
+            filename = './about.html'
+            break;
+        case '/blog':
+            filename = './blog.html'
+            break;
+        case '/contact':
+            filename = './contact.html'
+            break;
+        default:
+            filename = './error.html'
+            break;
     }
 
     fs.readFile(filename, (err, result) => {
